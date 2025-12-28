@@ -1,0 +1,26 @@
+@Services.Api_HostAddress = https://localhost:7227
+
+Post {{Services.Api_HostAddress}}/api/v1/movies
+Accept: application/json
+Content-Type: application/json
+
+{
+  "year": 2025,
+  "title": "Predador: Assassino de Assassinos",
+  "studio": "The Third Floor",
+  "producer": "Dan Trachtenberg",
+  "winner": false
+}
+
+###
+GET {{Services.Api_HostAddress}}/api/v1/movies?ps=8&page=1
+Content-Type: application/json
+Accept: application/json
+
+###
+
+GET {{Services.Api_HostAddress}}/api/v1/movies/producer-intervals
+Content-Type: application/json
+Accept: application/json
+
+###
