@@ -1,5 +1,4 @@
-﻿using Application.ViewModels;
-using Application.ViewModels.Requests;
+﻿using Application.ViewModels.Requests;
 using Application.ViewModels.Responses;
 using Core.Models;
 using System.Net;
@@ -69,7 +68,7 @@ namespace WebApp.Tests
 
         [Fact(DisplayName = "Get movies")]
         [Trait("Movies", "API Integration - Movies")]
-        public async Task GetMovies_ShouldReturnWithSuccess()
+        public async Task GetMovies_MoviePagination_ShouldReturnWithSuccess()
         {
             var client = _factory.CreateClient();
 
@@ -81,7 +80,6 @@ namespace WebApp.Tests
             var content = await response.Content.ReadAsStringAsync();
             var movies = JsonSerializer.Deserialize<PagedResult<MovieResponseViewModel>>(content);
             Assert.True(movies is not null && movies.TotalResults > 0);
-
         }
     }
 }

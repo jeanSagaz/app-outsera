@@ -1,6 +1,5 @@
 ﻿using Application.ViewModels.Responses;
 using Domain.Models;
-using Infra.Data.Models;
 
 namespace Application.Extensions
 {

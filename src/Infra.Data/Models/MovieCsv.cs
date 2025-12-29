@@ -1,6 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-
-namespace Infra.Data.Models
+﻿namespace Infra.Data.Models
 {
     public class MovieCsv
     {

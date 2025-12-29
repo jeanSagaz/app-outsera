@@ -41,20 +41,20 @@ namespace Application.Services
 
         public async Task<AwardResponseViewModel> GetProducerIntervals()
         {
-            // 1. Filtrar apenas vencedores e separar produtores múltiplos
+            // 1. Filtrar apenas vencedores
             var wins = await _movieRepository.SearchAsync(m => m.Winner != null && m.Winner == true);
 
             // 2. Produtor com maior intervalo entre dois prêmios consecutivos
             var intervalsBetweenTwoConsecutiveAwards = wins
-            .GroupBy(x => x.Producer)
+            .GroupBy(g => g.Producer)
             .Where(g => g.Count() > 1) // Apenas produtores com mais de uma vitória
             .SelectMany(g => {
                 var list = g.ToList();
-                var res = new List<IntervalResponseViewModel>();
+                var result = new List<IntervalResponseViewModel>();
 
                 if (list.Max(m => m.Year) - list.Min(m => m.Year) > 1)
                 {
-                    res.Add(new IntervalResponseViewModel
+                    result.Add(new IntervalResponseViewModel
                     {
                         Producer = g.Key,
                         Interval = list.Max(m => m.Year) - list.Min(m => m.Year),
@@ -63,21 +63,21 @@ namespace Application.Services
                     });
                 }
 
-                return res;
+                return result;
             })
             .ToList();
 
             // 3. Produtor que obteve dois prêmios mais rápido
             var intervalsTwoAwardsFaster = wins
-            .GroupBy(x => x.Producer)
+            .GroupBy(g => g.Producer)
             .Where(g => g.Count() > 1) // Apenas produtores com mais de uma vitória
             .SelectMany(g => {
                 var list = g.ToList();
-                var res = new List<IntervalResponseViewModel>();
+                var result = new List<IntervalResponseViewModel>();
 
                 if (list.Max(m => m.Year) - list.Min(m => m.Year) <= 1)
                 {
-                    res.Add(new IntervalResponseViewModel
+                    result.Add(new IntervalResponseViewModel
                     {
                         Producer = g.Key,
                         Interval = list.Max(m => m.Year) - list.Min(m => m.Year),
@@ -86,7 +86,7 @@ namespace Application.Services
                     });
                 }
 
-                return res;
+                return result;
             })
             .ToList();
 
@@ -140,7 +140,7 @@ namespace Application.Services
             {
                 foreach (var error in model.ValidationResult!.Errors)
                 {
-                    _domainNotifier.Add(new DomainNotification(error.ErrorMessage, error.ErrorCode));
+                    _domainNotifier.Add(new DomainNotification(error.ErrorMessage, error.PropertyName));
                 }
 
                 return;

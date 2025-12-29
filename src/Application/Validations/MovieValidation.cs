@@ -9,25 +9,30 @@ namespace Application.Validations
         protected void ValidateYear()
         {
             RuleFor(c => c.Year)
-                .NotEmpty().WithMessage(Errors.YearNotEmpty);
+                .NotEmpty().WithMessage(Errors.YearNotEmpty)
+                .GreaterThan(0).WithMessage(Errors.YearGreaterThan)
+                .OverridePropertyName("year");
         }
 
         protected void ValidateTitle()
         {
             RuleFor(c => c.Title)
-                .NotEmpty().WithMessage(Errors.TitleNotEmpty);
+                .NotEmpty().WithMessage(Errors.TitleNotEmpty)
+                .OverridePropertyName("title");
         }
 
         protected void ValidateStudio()
         {
             RuleFor(c => c.Studio)
-                .NotEmpty().WithMessage(Errors.StudioNotEmpty);
+                .NotEmpty().WithMessage(Errors.StudioNotEmpty)
+                .OverridePropertyName("studio");
         }
 
         protected void ValidateProducer()
         {
             RuleFor(c => c.Producer)
-                .NotEmpty().WithMessage(Errors.ProducerNotEmpty);
+                .NotEmpty().WithMessage(Errors.ProducerNotEmpty)
+                .OverridePropertyName("producer");
         }
     }
 }

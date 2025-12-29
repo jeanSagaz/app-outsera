@@ -124,6 +124,15 @@ namespace Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The year should be longer than {ComparisonValue}.
+        /// </summary>
+        public static string YearGreaterThan {
+            get {
+                return ResourceManager.GetString("YearGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The year must be specified..
         /// </summary>
         public static string YearNotEmpty {

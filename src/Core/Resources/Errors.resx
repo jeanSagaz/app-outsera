@@ -138,6 +138,9 @@
   <data name="TitleNotEmpty" xml:space="preserve">
     <value>The title must be specified.</value>
   </data>
+  <data name="YearGreaterThan" xml:space="preserve">
+    <value>The year should be longer than {ComparisonValue}</value>
+  </data>
   <data name="YearNotEmpty" xml:space="preserve">
     <value>The year must be specified.</value>
   </data>

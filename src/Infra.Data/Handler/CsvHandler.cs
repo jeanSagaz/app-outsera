@@ -31,6 +31,6 @@ namespace Infra.Data.Handler
             };
 
             return moviesCsv;
-    }
+        }
     }
 }
